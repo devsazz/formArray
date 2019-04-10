@@ -18,7 +18,19 @@ export class AppComponent {
     this.myForm = this._fb.group({
       productName: '',
       description: '',
-      specification: this._fb.array([])
+      specification: this._fb.array([this.initSpecification()])
     });
+  }
+
+  initSpecification(): FormGroup {
+    return this._fb.group({
+      model: 'ds',
+      overview: 'sa',
+      additionalFeature: this._fb.array([this.initAdditionalFetArray()])
+    })
+  }
+
+  initAdditionalFetArray() {
+    return this._fb.control('')
   }
 }

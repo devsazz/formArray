@@ -1,4 +1,6 @@
 <form [formGroup]="myForm">
   Product Name : <input type="text" formControlName="productName">
   Description : <input type="text" formControlName="description">
+
 </form>
+{{myForm.value | json}}
