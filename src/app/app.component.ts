@@ -24,8 +24,8 @@ export class AppComponent {
 
   initSpecification(): FormGroup {
     return this._fb.group({
-      model: 'ds',
-      overview: 'sa',
+      model: '',
+      overview: '',
       additionalFeature: this._fb.array([this.initAdditionalFetArray()])
     })
   }

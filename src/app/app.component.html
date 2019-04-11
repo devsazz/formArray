@@ -1,6 +1,18 @@
 <form [formGroup]="myForm">
   Product Name : <input type="text" formControlName="productName">
-  Description : <input type="text" formControlName="description">
-
+  <br>Description : <input type="text" formControlName="description">
+  <ng-container formArrayName="specification">
+    <ng-container *ngFor="let item of myForm.controls.specification.controls; let i = index">
+      <div formGroupName="{{i}}" style="margin: 10px 20px;background: aqua;width: 100px">
+        Model :<input type="text" formControlName="model">
+        <br>Overview :<input type="text" formControlName="overview">
+        <ng-container formArrayName="additionalFeature">
+          <ng-container *ngFor="let items of item.controls.additionalFeature.controls; let a = index">
+            Additional Feature :<input type="text" formControlName="{{a}}">
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
 </form>
 {{myForm.value | json}}
