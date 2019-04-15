@@ -2,17 +2,30 @@
   Product Name : <input type="text" formControlName="productName">
   <br>Description : <input type="text" formControlName="description">
   <ng-container formArrayName="specification">
+    <button (click)="addSpec()">add spec</button>
     <ng-container *ngFor="let item of myForm.controls.specification.controls; let i = index">
+      <button (click)="deleteSpec(i)">delete spec</button>
       <div formGroupName="{{i}}" style="margin: 10px 20px;background: aqua;width: 100px">
         Model :<input type="text" formControlName="model">
         <br>Overview :<input type="text" formControlName="overview">
         <ng-container formArrayName="additionalFeature">
+          <button (click)="addAdditionalSpec(i)">add spec</button>
           <ng-container *ngFor="let items of item.controls.additionalFeature.controls; let a = index">
+            <button (click)="deleteSpecAddtional(i,a)">delete child spec</button>
             Additional Feature :<input type="text" formControlName="{{a}}">
           </ng-container>
         </ng-container>
       </div>
     </ng-container>
   </ng-container>
+  <button (click)="submit()">save</button>
 </form>
 {{myForm.value | json}}
+
+<hr>
+<div>
+  <h2>The Current Date Is:</h2>
+  <div *ngIf="myDate">{{myDate.date}}</div>
+  <input #newDateInput placeholder="Enter new date..."/>
+  <button (click)="setDate(newDateInput.value)">Set Date</button>
+</div>
